@@ -1,0 +1,16 @@
+app = "Veechan"
+primary_region = "sin"   # 可选：sin / nrt / sea 等，就近即可
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  N8N_BASIC_AUTH_ACTIVE = "true"
+  N8N_BASIC_AUTH_USER   = "admin"
+  N8N_BASIC_AUTH_PASSWORD = "yourpwd"
+  DB_TYPE               = "sqlite"
+  DB_SQLITE_DATABASE    = "/app/data/n8n.sqlite"
+
+[mounts]
+  source      = "n8n_data"
+  destination = "/app/data"
