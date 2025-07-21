@@ -10,7 +10,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl launch --now --remote-only
+
+      # 1. 若 App 不存在就创建（静默）
+      - run: |
+          APP_NAME=$(grep -m1 '^app\s*=' fly.toml | cut -d'"' -f2)
+          flyctl apps list | grep -q "$APP_NAME" || \
+          flyctl apps create "$APP_NAME" --org personal
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      # 2. 部署
+      - run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
