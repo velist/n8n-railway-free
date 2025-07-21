@@ -1,4 +1,4 @@
-app = "Veechan"
+app = "n8n-velist-2507229527"
 primary_region = "sin"   # 可选：sin / nrt / sea 等，就近即可
 
 [build]
