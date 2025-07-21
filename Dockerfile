@@ -1,0 +1,7 @@
+FROM n8nio/n8n:latest
+ENV N8N_BASIC_AUTH_ACTIVE=true
+ENV N8N_BASIC_AUTH_USER=admin
+ENV N8N_BASIC_AUTH_PASSWORD=yourpwd
+ENV DB_TYPE=sqlite
+ENV DB_SQLITE_DATABASE=/app/data/n8n.sqlite
+VOLUME ["/app/data"]
